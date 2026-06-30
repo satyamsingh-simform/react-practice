@@ -14,10 +14,17 @@
 // import Search from "./components/search-functionality/Search";
 // import BarGraph from "./components/bar-char-creator/BarGraph";
 
-import { AutoComplete } from "./components/auto-complete/AutoComplete";
-import { Hook } from "./components/Hook";
-import { OneTimePassGen } from "./components/otp/OneTimePassGen";
-import Search from "./components/search-functionality/Search";
+import { Reducer } from "./components/usestate-case/Reducer";
+import AsyncState from "./output-based/AsyncState";
+import { Child } from "./output-based/context/Child";
+import { Parent } from "./output-based/context/Parent";
+import Ref from "./output-based/Ref";
+import { Timer } from "./output-based/Timer";
+
+// import { AutoComplete } from "./components/auto-complete/AutoComplete";
+// import { Hook } from "./components/Hook";
+// import { OneTimePassGen } from "./components/otp/OneTimePassGen";
+// import Search from "./components/search-functionality/Search";
 // import { ArrayGen } from "./generic/ArrayGen";
 // import { DataTableG } from "./generic/DataTableG";
 
@@ -50,19 +57,25 @@ export default function App(){
         {/* <Cart/> */}
         {/* <Counter/> */}
 
+
         {/* <DataTableG<UserDetailsTable> 
             presentableColumns={['id', 'name', 'salary']}
             data={[{ id:'1', name:'Mark', age: 21, salary: 35000 }]} 
         /> */}
-
         {/* <ArrayGen<number> arr={[1,2,3]}/>
         <ArrayGen arr={["a", "b"]}/> */}
-
         {/* <Hook/> */}
-
         {/* <OneTimePassGen/> */}
+        {/* <AutoComplete/> */}
 
-        <AutoComplete/>
+
+        {/* <Timer/> */}
+        {/* <AsyncState/> */}
+
+        {/* <Child/> */}
+        {/* <Parent/> */}
+        {/* <Ref/> */}
+        {/* <Reducer/> */}
         </>
     )
 }
