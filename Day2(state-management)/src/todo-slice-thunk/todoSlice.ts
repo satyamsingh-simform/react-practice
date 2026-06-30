@@ -1,11 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchTodos=createAsyncThunk(
-    'todos/fetch',
-    async()=>{
-        const response=await fetch('https://jsonplaceholder.typicode.com/todo');
-        const todo=response.json();
-        return todo;
+export const fetchTodos=createAsyncThunk<TodoData[],void,{rejectValue:string}>(
+    'fetchTodos',
+    async(_,{rejectWithValue})=>{
+        try{
+            const response=await fetch('https://jsonplaceholder.typicode.com/todos');
+            if(!response.ok){
+                throw new Error('could not fetched todos');
+            }
+            return await response.json();
+        }
+        catch(err){
+            if(err instanceof Error){
+                return rejectWithValue(err.message)
+            }
+            return 'something went wrong'
+        }
     }
 )
 
@@ -43,7 +53,7 @@ const todoSlice=createSlice({
             })
             .addCase(fetchTodos.rejected,(state,actions)=>{
                 state.loading=false;
-                state.error='error';
+                state.error=actions.payload??'something went wrong';
             })
     }
 })
