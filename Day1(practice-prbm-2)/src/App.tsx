@@ -15,6 +15,8 @@
 // import BarGraph from "./components/bar-char-creator/BarGraph";
 
 import { Reducer } from "./components/usestate-case/Reducer";
+import DynamicForm from "./fix-bug/dynamic-form/DynamicForm";
+import WindowSize from "./fix-bug/use-effect.tsx/WindowSize";
 import AsyncState from "./output-based/AsyncState";
 import { Child } from "./output-based/context/Child";
 import { Parent } from "./output-based/context/Parent";
@@ -76,6 +78,10 @@ export default function App(){
         {/* <Parent/> */}
         {/* <Ref/> */}
         {/* <Reducer/> */}
+
+        {/* <DynamicForm/> */}
+
+        <WindowSize/>
         </>
     )
 }
