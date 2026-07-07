@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import type { AppStore, DispatchType } from "../store"
-import {increment,decrement,reset} from "../counter1Slice/Count1Slice"
+import {increment,decrement,reset} from "../feature/counter1Slice/Count1Slice"
 
 export const Counter1 = () => {
   const {count}=useSelector((store:AppStore)=>store.counter)

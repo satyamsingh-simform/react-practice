@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import type { AppStore, DispatchType } from "../store"
 import { useEffect } from "react"
-import { fetchTodos } from "../todo-slice-thunk/todoSlice"
+import { fetchTodos } from "../feature/todo-slice-thunk/todoSlice"
 
 export const Todo = () => {
     

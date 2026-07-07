@@ -17,11 +17,11 @@
 import { Reducer } from "./components/usestate-case/Reducer";
 import DynamicForm from "./fix-bug/dynamic-form/DynamicForm";
 import WindowSize from "./fix-bug/use-effect.tsx/WindowSize";
-import AsyncState from "./output-based/AsyncState";
-import { Child } from "./output-based/context/Child";
-import { Parent } from "./output-based/context/Parent";
-import Ref from "./output-based/Ref";
-import { Timer } from "./output-based/Timer";
+// import AsyncState from "./output-based/AsyncState";
+// import { Child } from "./output-based/context/Child";
+// import { Parent } from "./output-based/context/Parent";
+// import Ref from "./output-based/Ref";
+// import { Timer } from "./output-based/Timer";
 
 // import { AutoComplete } from "./components/auto-complete/AutoComplete";
 // import { Hook } from "./components/Hook";
