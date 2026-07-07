@@ -1,10 +1,13 @@
-import { Todo } from "./components/Todos"
+import { Counter } from "./components/Counter"
+import { Error } from "./components/Error"
+import ErrorBoundary from "./components/ErrorBoundary"
 
 export const App = () => {
   return (
     <div>
-      {/* <Counter/> */}
-      <Todo/>
+      <ErrorBoundary fallback={Error}>
+        <Counter/>
+      </ErrorBoundary>
     </div>
   )
 }
