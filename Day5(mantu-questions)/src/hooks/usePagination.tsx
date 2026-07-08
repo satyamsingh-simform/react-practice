@@ -12,18 +12,16 @@ export const usePagination = ({data,pageSize}:PaginationProps) => {
     console.log(data);
 
     function next(){
-        if(data.length<startIndex+pageSize){
-            console.log('hi');
-            
+        if(startIndex+pageSize>=data.length){
             return;
         }
-        setStartIndex(prev=>prev+pageSize);
+        setStartIndex(prev=>prev+pageSize)
     }
     function previous(){
-        if(data.length>pageSize){
-            return
+        if(startIndex<=0){
+            return;
         }
-        setStartIndex(prev=>prev-pageSize);
+        setStartIndex(prev=>prev-pageSize)
     }
 
   return {currentPage,next,previous}

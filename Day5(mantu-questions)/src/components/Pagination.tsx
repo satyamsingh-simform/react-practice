@@ -31,8 +31,8 @@ export const Pagination = () => {
                 ))
             }
         </h1>
-        <button onClick={next}>prev</button>
-        <button onClick={previous}>next</button>
+        <button onClick={previous}>prev</button>
+        <button onClick={next}>next</button>
     </div>
   )
 }
