@@ -1,4 +1,4 @@
-import { useDefault } from "../hooks/useDefault"
+import { useDefault } from "../hooks/mentor-hooks/useDefault"
 
 export const Default = () => {
 // const [state, setState] = useDefault(initalValue, defaultValue);

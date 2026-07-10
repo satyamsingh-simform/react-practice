@@ -6,6 +6,9 @@ import { Screen } from "./components/Screen"
 import { Memo } from "./components/Memo"
 import { KeyBoardShortcut } from "./components/KeyBoardShortcut"
 import { Input } from "./components/Input"
+import { Pagination } from "./components/Pagination"
+import { PrevState } from "./components/PrevState"
+import { Accordian } from "./components/Accordian"
 
 export const App = () => {
   const [toggle,setToggle]=useState(true);
@@ -17,13 +20,18 @@ export const App = () => {
       {/* {
         toggle?<Screen/>:<Cycle/>
       } */}
-      <Memo/>
+      {/* <Memo/> */}
       {/* <Cycle/> */}
       {/* <KeyBoardShortcut/> */}
 
       {/* <Screen/> */}
 
       {/* <Input/> */}
+
+      {/* <Pagination/> */}
+      {/* <PrevState/> */}
+
+      <Accordian/>
     </div>
   )
 }

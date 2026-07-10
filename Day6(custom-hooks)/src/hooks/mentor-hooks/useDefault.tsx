@@ -36,7 +36,7 @@ export const useDefault =<T,>(initalValue:T|null|undefined, defaultValue:T) => {
 import { useState } from "react"
 
 export const useDefault = <T,>(initalValue:T|null|undefined,defaultValue:T) => {
-  const [state,setState]=useState<T|null|undefined>(initalValue ?? defaultValue);
+  const [state,setState]=useState(initalValue);
 
   return [state ?? defaultValue,setState] as const;
 }

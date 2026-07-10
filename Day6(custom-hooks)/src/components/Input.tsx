@@ -1,5 +1,5 @@
 import type { SubmitEvent } from "react";
-import { useInputControl } from "../hooks/useInputControl";
+import { useInputControl } from "../hooks/mentor-hooks/useInputControl";
 
 //  const {value,onChange,onBlur,isDirty,isTouched, isDifferent, reset} = useInputControl('Oliver');
 

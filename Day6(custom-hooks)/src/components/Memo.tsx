@@ -3,13 +3,13 @@
 // const memoizedValue=useCustomMemo(callback,dependency)
 
 import { useState } from "react";
-import { useCustomMemo } from "../hooks/useCustomMemo"
+import { useCustomMemo } from "../hooks/mentor-hooks/useCustomMemo"
 
 export const Memo = () => {
     const[count,setCount]=useState(2);
     const[change,setChange]=useState(0);
 
-    const memoizedValue=useCustomMemo(heavyCal,[count]);
+    const memoizedValue=useCustomMemo(heavyCal,[count],5);
     console.log('count',count);
 
     function heavyCal(){

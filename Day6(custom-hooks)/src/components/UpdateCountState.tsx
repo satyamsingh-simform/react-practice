@@ -1,4 +1,4 @@
-import { useUpdateCountState } from "../hooks/useUpdateCountState"
+import { useUpdateCountState } from "../hooks/mentor-hooks/useUpdateCountState"
 
 export const  UpdateCountState= () => {
 const [state,setState,count]=useUpdateCountState(100)

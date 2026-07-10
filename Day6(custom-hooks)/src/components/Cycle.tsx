@@ -1,4 +1,4 @@
-import { useCycle } from "../hooks/useCycle";
+import { useCycle } from "../hooks/mentor-hooks/useCycle";
 
 const arr=['low', 'medium', 'high'];
 

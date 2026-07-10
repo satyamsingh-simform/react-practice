@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useOnScreen } from "../hooks/useOnScreen"
+import { useOnScreen } from "../hooks/mentor-hooks/useOnScreen"
 
 // const isVisible=useonScreen(ref)// returns true if element is visible on screen.
 

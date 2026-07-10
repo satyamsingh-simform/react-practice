@@ -9,8 +9,8 @@
 // import { ValueType } from "./components/usestate-case/ValueType";
 // import { CustomHook, UseCustomHook } from "./CustomHook";
 // import { Display } from "./components/toggleSelection/Display";
-// import Accordian from "./components/accordian/Accordian";
-// import AccordianOne from "./components/accordian-one/AccordianOne";
+import Accordian from "./components/accordian/Accordian";
+import AccordianOne from "./components/accordian-one/AccordianOne";
 // import Search from "./components/search-functionality/Search";
 // import BarGraph from "./components/bar-char-creator/BarGraph";
 
@@ -45,7 +45,7 @@ export default function App(){
 
     return(
         <>
-        {/* <Accordian/> */}
+        <Accordian/>
         {/* <AccordianOne/> */}
         {/* <Search/> */}
         {/* <BarGraph/> */}
@@ -81,7 +81,7 @@ export default function App(){
 
         {/* <DynamicForm/> */}
 
-        <WindowSize/>
+        {/* <WindowSize/> */}
         </>
     )
 }

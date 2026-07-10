@@ -27,7 +27,7 @@ export const useCustomMemo =<T,R>(callback:()=>R,dependency:T[])=> {
 
 import { useRef } from "react"
 
-export const useCustomMemo = <T,R>(callback:()=>T,dependency:R[]) => {
+export const useCustomMemo = <T,R>(callback:(val?:T)=>T,dependency:R[],val?:T) => {
   const memoRef=useRef<{dependency:R[],value:T}|null>(null);
 
   const changed=memoRef.current===null || dependency.some((dep,index)=>dep!==memoRef.current?.dependency[index])

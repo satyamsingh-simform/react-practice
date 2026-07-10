@@ -1,4 +1,4 @@
-import { useKeyBoardShortcut } from "../hooks/useKeyBoardShortcut";
+import { useKeyBoardShortcut } from "../hooks/mentor-hooks/useKeyBoardShortcut";
 
 function callback(){
     alert('callback run')
