@@ -1,18 +1,42 @@
-import { useEffect, useState } from "react";
+/*
+import { useEffect, useState, type SetStateAction } from "react";
 
-// works exactly like useState but whenever state is null or undefined, it returns defaultValue instead of null or undefined
+// works exactly like useState but whenever state is null or undefined,
+//  it returns defaultValue instead of null or undefined
 
-export const useDefault =<T,>(initalValue:T, defaultValue:T) => {
-  const [state, setState] = useState<T|null|undefined>(initalValue);
+export const useDefault =<T,>(initalValue:T|null|undefined, defaultValue:T) => {
+  const [state, setState] = useState(initalValue??defaultValue);
+  
+  // useEffect(()=>{
+  //   setState((prev)=>{
+  //       if(prev===null||undefined){
+  //           return defaultValue
+  //       }
+  //       return prev;
+  //   })
+  // },[state])
 
-  useEffect(()=>{
+  function setStateWrapperFn(valueOrCallback:SetStateAction<T|null|undefined>){
     setState((prev)=>{
-        if(prev===null||undefined){
-            return defaultValue
-        }
-        return prev;
-    })
-  },[state])
+      const nextState=typeof valueOrCallback ==='function'
+      ?valueOrCallback(prev)
+      :valueOrCallback;
 
-  return [state, setState] as const;
+      if(nextState===null||undefined){
+        return defaultValue;
+      }
+      return nextState
+    })
+  }
+
+  return [state, setStateWrapperFn] as const;
 };
+*/
+
+import { useState } from "react"
+
+export const useDefault = <T,>(initalValue:T|null|undefined,defaultValue:T) => {
+  const [state,setState]=useState<T|null|undefined>(initalValue ?? defaultValue);
+
+  return [state ?? defaultValue,setState] as const;
+}

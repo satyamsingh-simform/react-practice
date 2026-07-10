@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type SetStateAction } from "react";
 
+/*
 export const useUpdateCountState = <T,>(iniitialState:T) => {
     // const[state,setState]=useState(iniitialState);
     // const[count,setCount]=useState(0);
@@ -21,10 +22,30 @@ export const useUpdateCountState = <T,>(iniitialState:T) => {
     const [state,setState]=useState(iniitialState);
     const count=useRef(0);
 
-    setState((prev)=>{
-        count.current++;
-        return prev+1;
-    })
+    // function setStateFn(valueOrCallback:T | ((value:T)=>T)){
+    //     setState(valueOrCallback);
+    //     count.current++;
+    // }
 
-    return [state,setState,count.current] as const;
+    function setStateFn(value:SetStateAction<T>){
+        setState(value);
+        count.current++;
+    }
+
+    return [state,setStateFn,count.current] as const;
+}
+*/
+
+
+
+export const useUpdateCountState = (initialValue:number) => {
+    const [state,setState]=useState(initialValue);
+    const countRef=useRef(0);
+
+    function setStateWrapper(valueOrCallback:SetStateAction<number>){
+        setState(valueOrCallback);
+        countRef.current+=1;
+    }
+
+  return [state,setStateWrapper,countRef.current] as const;
 }
