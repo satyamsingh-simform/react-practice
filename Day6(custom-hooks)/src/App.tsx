@@ -8,14 +8,14 @@ import { KeyBoardShortcut } from "./components/KeyBoardShortcut"
 import { Input } from "./components/Input"
 import { Pagination } from "./components/Pagination"
 import { PrevState } from "./components/PrevState"
-import { Accordian } from "./components/Accordian"
+// import { Accordian } from "./components/Accordian"
 
 export const App = () => {
   const [toggle,setToggle]=useState(true);
   return (
     <div className="h-1000 border">
       {/* <UpdateCountState/> */}
-      {/* <Default/> */}
+      <Default/>
       
       {/* {
         toggle?<Screen/>:<Cycle/>
@@ -31,7 +31,7 @@ export const App = () => {
       {/* <Pagination/> */}
       {/* <PrevState/> */}
 
-      <Accordian/>
+      {/* <Accordian/> */}
     </div>
   )
 }

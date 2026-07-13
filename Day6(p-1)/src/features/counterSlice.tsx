@@ -5,7 +5,7 @@ type InitialStateType={
    btnClicked:number,
 }
 
-const initialState={
+const initialState:InitialStateType={
     count:0,
     btnClicked:0
 }
