@@ -2,18 +2,22 @@ import { useEffect, useState } from "react"
 
 export const WindowWidthTracker = () => {
 
-    const [size,setSize]=useState(0);
+    const [size,setSize]=useState(window.innerWidth);
 
     useEffect(()=>{
         function handleSize(){
             setSize(window.innerWidth)
         }
-        addEventListener("innerWidth",handleSize)
+        addEventListener("resize",handleSize);
+
+        return ()=>{
+          removeEventListener('resize',handleSize);
+        }
     },[])
 
   return (
     <div>
-        
+        size:{size}
     </div>
   )
 }

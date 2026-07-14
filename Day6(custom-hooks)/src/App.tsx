@@ -8,6 +8,7 @@ import { KeyBoardShortcut } from "./components/KeyBoardShortcut"
 import { Input } from "./components/Input"
 import { Pagination } from "./components/Pagination"
 import { PrevState } from "./components/PrevState"
+import { AdvanceAsync } from "./components/AdvanceAsync"
 // import { Accordian } from "./components/Accordian"
 
 export const App = () => {
@@ -15,7 +16,7 @@ export const App = () => {
   return (
     <div className="h-1000 border">
       {/* <UpdateCountState/> */}
-      <Default/>
+      {/* <Default/> */}
       
       {/* {
         toggle?<Screen/>:<Cycle/>
@@ -32,6 +33,8 @@ export const App = () => {
       {/* <PrevState/> */}
 
       {/* <Accordian/> */}
+
+      <AdvanceAsync/>
     </div>
   )
 }

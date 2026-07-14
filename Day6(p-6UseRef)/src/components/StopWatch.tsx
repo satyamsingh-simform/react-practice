@@ -22,15 +22,6 @@ export const StopWatch = () => {
     const [time,setTime]=useState(0);
     const timerRef=useRef<number>(null);
 
-    useEffect(()=>{
-        return()=>{
-            if(timerRef.current){
-                clearInterval(timerRef.current);
-                timerRef.current=null;
-            }
-        }
-    },[])
-
     function handleStartTimer(){
         if(timerRef.current){
             console.log('handleresiume');
@@ -60,7 +51,14 @@ export const StopWatch = () => {
         setTime(0);
     }
 
-
+    useEffect(()=>{
+        return()=>{
+            if(timerRef.current){
+                clearInterval(timerRef.current);
+                timerRef.current=null;
+            }
+        }
+    },[])
 
   return (
     <div>

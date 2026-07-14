@@ -9,15 +9,75 @@ fetchInterval:3000 // in milliseconds for polling
 
 */
 
-type UseAdvanceAsyncProps={
-    asyncfn:()=>any,
-    retry:number,
-    unwrap:()=>void,
-    fetchInterval:number,
-}
+import { useEffect, useRef, useState } from "react";
 
-export const useAdvanceAsync = ({asyncfn,retry,unwrap,fetchInterval}:UseAdvanceAsyncProps) => {
-    
+// export type Data = {
+//   id: number;
+//   name: string;
+//   username: string;
+// };
 
-  return ({data, isLoading, error})
-}
+type UseAdvanceAsyncProps<T> = {
+  asyncfn: () => Promise<Response>;
+  retry: number;
+  unwrap: (result: T[]) => T[];
+  fetchInterval: number;
+};
+
+export const useAdvanceAsync = <T,>({ asyncfn, retry, unwrap, fetchInterval}: UseAdvanceAsyncProps<T>) => {
+  const [data, setData] = useState<T[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null | unknown>(null);
+  const timerRef = useRef(0);
+  const count=useRef(0);
+
+  useEffect(() => {
+    async function fetchData(){
+      
+      try {
+        setIsLoading(true);
+        const resp = await asyncfn();
+
+        if (!resp.ok) {
+          throw new Error("could not fetched data");
+        }
+
+        const data:T[] = await resp.json();
+        // setData(data);
+        setData(unwrap(data));
+
+        if (resp.ok) {
+          count.current=0;
+          clearInterval(timerRef.current)
+          timerRef.current = setInterval(() => {
+            console.log("pooling");
+            fetchData();
+          }, fetchInterval);
+        }
+      } 
+
+      catch (err) {
+        if (count.current < retry) {
+          console.log("retry-->");
+          fetchData();
+          count.current++;
+          return;
+        }
+        setError(err);
+        setIsLoading(false);
+      } 
+      
+      finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchData();
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
+
+  return { data, isLoading, error };
+};
