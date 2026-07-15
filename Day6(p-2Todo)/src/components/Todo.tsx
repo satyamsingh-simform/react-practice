@@ -1,10 +1,9 @@
-import { useStore } from "../hooks/useStore"
 import {addTodo,deleteTodo, editTodo, filterTodo, toggleCompleted} from '../features/todoSlice'
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from '../hooks/useStore';
 
 export const Todo = () => {
     const [input,setInput]=useState('');
-    const {useAppSelector,useAppDispatch}=useStore();
     const {todos,filter}=useAppSelector(store=>store.todo);
     const dispatch=useAppDispatch();
 

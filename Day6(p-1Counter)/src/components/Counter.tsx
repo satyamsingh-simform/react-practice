@@ -1,8 +1,7 @@
-import { useStore } from "../hooks/useStore"
 import {increment,decrement,reset} from '../features/counterSlice'
+import { useAppDispatch, useAppselector } from '../hooks/useStore';
 
 export const Counter = () => {
-  const {useAppselector,useAppDispatch}=useStore();
   const {count,btnClicked}=useAppselector(store=>store.counter);
   const dispatch=useAppDispatch();
 
