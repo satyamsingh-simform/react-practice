@@ -18,14 +18,14 @@ import { useEffect, useRef, useState } from "react";
 // };
 
 type UseAdvanceAsyncProps<T> = {
-  asyncfn: () => Promise<Response>;
+  asyncfn: () => Promise<T>;
   retry: number;
-  unwrap: (result: T[]) => T[];
+  unwrap: (result: T) => T;
   fetchInterval: number;
 };
 
 export const useAdvanceAsync = <T,>({ asyncfn, retry, unwrap, fetchInterval}: UseAdvanceAsyncProps<T>) => {
-  const [data, setData] = useState<T[] | null>(null);
+  const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null | unknown>(null);
   const timerRef = useRef(0);
@@ -33,35 +33,27 @@ export const useAdvanceAsync = <T,>({ asyncfn, retry, unwrap, fetchInterval}: Us
 
   useEffect(() => {
     async function fetchData(){
-      
+      setIsLoading(true);
+      setError(null);
+
       try {
-        setIsLoading(true);
-        const resp = await asyncfn();
+        const result:T = await asyncfn();
 
-        if (!resp.ok) {
-          throw new Error("could not fetched data");
-        }
+        setData(unwrap(result));
 
-        const data:T[] = await resp.json();
-        // setData(data);
-        setData(unwrap(data));
+        count.current = 0;
 
-        if (resp.ok) {
-          count.current=0;
-          clearInterval(timerRef.current)
-          timerRef.current = setInterval(() => {
-            console.log("pooling");
-            fetchData();
-          }, fetchInterval);
+        if (!timerRef.current && fetchInterval) {
+          timerRef.current = window.setInterval(fetchData, fetchInterval);
         }
       } 
 
       catch (err) {
         if (count.current < retry) {
           console.log("retry-->");
-          fetchData();
+          // fetchData();
           count.current++;
-          return;
+          return fetchData();
         }
         setError(err);
         setIsLoading(false);

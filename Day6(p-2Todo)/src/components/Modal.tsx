@@ -14,13 +14,22 @@ export const Modal = ({closeModal,id}:{closeModal:()=>void,id:number}) => {
         onChange={(e)=>setTitle(e.target.value)}
         value={title}
       />
-      <button className="border rounded-sm w-30" 
+      <div className="flex justify-between">
+        <button className="border rounded-sm px-3" 
         onClick={()=>{
             closeModal();
             dispatch(editTodo({id,title}));
         }}>
         edit title
       </button>
+      <button className="border rounded-sm px-3" 
+        onClick={()=>{
+            closeModal();
+        }}>
+        cancel
+      </button>
+      </div>
+      
     </div>
     </>
   )

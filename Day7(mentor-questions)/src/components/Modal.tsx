@@ -3,7 +3,6 @@ import { MyModal } from "./MyModal";
 
 export const Modal = () => {
   const [open, setOpen] = useState(false);
-
   const closeModal=()=>setOpen(false);
     
   return (
@@ -14,11 +13,11 @@ export const Modal = () => {
       >
         open Modal
       </button>
-      {
+    {
         open 
         ? <MyModal closeModal={closeModal}/>
         : ''
-        }
+    }
 
         <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dignissimos assumenda placeat reprehenderit error provident reiciendis ex, itaque iusto maiores eligendi dolores sunt. In vitae molestiae quaerat sequi eum dolorem.
         Quibusdam totam eaque enim porro numquam ut voluptas consequuntur! Culpa quia tempora labore enim exercitationem dolor unde, quo esse quos magnam? Enim, tempora. Ullam omnis quaerat rerum unde perferendis cumque!

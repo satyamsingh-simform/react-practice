@@ -13,7 +13,7 @@ export const AdvanceAsync = () => {
   const { data, isLoading, error } = useAdvanceAsync<Data>({
     asyncfn: () => fetch("https://jsonplaceholder.typicode.com/user"),
     retry: 3,
-    unwrap: (resp: Data[]) => resp,
+    unwrap: (resp: Data) => resp,
     fetchInterval: 3000,
   });
 

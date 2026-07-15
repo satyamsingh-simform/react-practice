@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchData=createAsyncThunk<MobileType[],string,{rejectValue:string}>(
     'fetch/phone',
-    async (param)=>{
+    async (param,thunkAPI)=>{
         try{
             const resp=await fetch(`https://dummyjson.com/products/search?q=${param}`);
             // console.log('called made--->',await resp.json());
@@ -12,7 +12,7 @@ export const fetchData=createAsyncThunk<MobileType[],string,{rejectValue:string}
             return data.products;
         }
         catch(err){
-           
+           return thunkAPI.rejectWithValue(err instanceof Error ?err.message:'unknown error');
         }
     }
 )
@@ -23,6 +23,7 @@ type MobileType={
     description:string,
     category:string,
     price:number,
+    thumbnail:string,
 }
 
 type InitialState={
@@ -54,7 +55,7 @@ const phoneSlice=createSlice({
             })
             .addCase(fetchData.rejected,(state,action)=>{
                 state.loading=false;
-                state.error=action.payload;
+                state.error=action.payload ?? action.error.message ?? 'null';
             })
 
     }
