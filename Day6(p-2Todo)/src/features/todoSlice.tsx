@@ -11,6 +11,16 @@ type InitialState={
     filter:string,
 }
 
+// type Payload={
+//     id:number,
+//     title:string,
+// }
+
+type EditPayloadType={
+    id:number,
+    title:string,
+}
+
 const initialState:InitialState={
     todos:[{id:1,title:'learn react',completed:false},{id:2,title:'learn react-redux',completed:false}],
     filter:'all',
@@ -26,14 +36,14 @@ const todoSlice=createSlice({
         deleteTodo:(state,action:PayloadAction<number>)=>{
             state.todos=state.todos?.filter((todo)=>todo.id!==action.payload);
         },
-        editTodo:(state,action:PayloadAction<number>)=>{
-            const updatedTitle=prompt('enter title');//remove this
-            if(!updatedTitle) return;
+        editTodo:(state,action:PayloadAction<EditPayloadType>)=>{
+            // const updatedTitle=prompt('enter title');//remove this
+            // if(!updatedTitle) return;
             state.todos=state.todos?.map((todo)=>{
-                if(todo.id===action.payload){
+                if(todo.id===action.payload.id){
                     return{
                         ...todo,
-                        title:updatedTitle
+                        title:action.payload.title,
                     }
                 }
                 return todo

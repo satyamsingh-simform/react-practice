@@ -1,12 +1,15 @@
 import {addTodo,deleteTodo, editTodo, filterTodo, toggleCompleted} from '../features/todoSlice'
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from '../hooks/useStore';
+import { Modal } from './Modal';
 
 export const Todo = () => {
     const [input,setInput]=useState('');
+    const [openModel,setOpenModal]=useState(false);
     const {todos,filter}=useAppSelector(store=>store.todo);
     const dispatch=useAppDispatch();
 
+    const closeModal=()=>setOpenModal(false);
     const filteredData=todos.filter((todo)=>{
         if(filter==='completed'){
             return todo.completed;
@@ -18,6 +21,9 @@ export const Todo = () => {
     })
 
   return (
+    <>
+    {
+        
     <div>
         <input type="text" placeholder="enter todo"
             className="border"
@@ -42,11 +48,14 @@ export const Todo = () => {
                     onClick={()=>dispatch(deleteTodo(todoObj.id))}
                     >delTodo
                     </button>
-                    <button className="border" onClick={()=>dispatch(editTodo(todoObj.id))}>editTodo</button>
-
+                    <button className="border" onClick={()=>setOpenModal(true)}>editTodo</button>
+                    {openModel?<Modal closeModal={closeModal} id={todoObj.id}/>:''}
                 </div>
             ))
         }
     </div>
+
+    }
+    </>
   )
 }

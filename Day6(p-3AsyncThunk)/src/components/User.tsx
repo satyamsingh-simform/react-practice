@@ -16,7 +16,6 @@ export const User = () => {
     console.log(error);
     console.log(user);
     
-
     if(loading){
         return <h1>Loading ...</h1>
     }
@@ -24,8 +23,6 @@ export const User = () => {
     if(error){
         return <h1>{error}</h1>
     }
-
-    
 
   return (
     <div>

@@ -1,5 +1,15 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
+/*
+createAsyncThunk<Returned,ThunkArg,ThunkApiConfig>()
+ThunkApiConfig={
+    rejectValue: string;  //this say what argument type rejectWithValue takes
+    state: RootState;
+    dispatch: AppDispatch;
+    extra: MyExtra;
+}
+*/
+
 export const fetchUser=createAsyncThunk<User[],void,{rejectValue:string}>(
     'fetch/user',
     async(_,{rejectWithValue})=>{
@@ -8,7 +18,7 @@ export const fetchUser=createAsyncThunk<User[],void,{rejectValue:string}>(
             console.log('-->',resp);
             
             if(!resp.ok){
-                throw new Error('could not fetched data');
+                throw new Error("counld not fetched data");
             }
             const data=await resp.json();
             console.log('-->',data);
@@ -16,7 +26,8 @@ export const fetchUser=createAsyncThunk<User[],void,{rejectValue:string}>(
             return data;
         }
         catch(err){
-            return rejectWithValue(err instanceof Error ? err.message : 'Unknown error');
+            return rejectWithValue(err instanceof Error ? err.message :'unknown error');
+            // return (err instanceof Error ? err.message : 'Unknown error'); //this become fullfield case
         }
     }
 )
