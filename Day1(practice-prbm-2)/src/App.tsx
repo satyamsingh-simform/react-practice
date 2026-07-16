@@ -28,7 +28,7 @@ import WindowSize from "./fix-bug/use-effect.tsx/WindowSize";
 // import { OneTimePassGen } from "./components/otp/OneTimePassGen";
 // import Search from "./components/search-functionality/Search";
 // import { ArrayGen } from "./generic/ArrayGen";
-// import { DataTableG } from "./generic/DataTableG";
+import { DataTableG } from "./generic/DataTableG";
 
 export interface UserDetailsTable {
   id: string;
@@ -60,10 +60,10 @@ export default function App(){
         {/* <Counter/> */}
 
 
-        {/* <DataTableG<UserDetailsTable> 
+        <DataTableG<UserDetailsTable> 
             presentableColumns={['id', 'name', 'salary']}
             data={[{ id:'1', name:'Mark', age: 21, salary: 35000 }]} 
-        /> */}
+        />
         {/* <ArrayGen<number> arr={[1,2,3]}/>
         <ArrayGen arr={["a", "b"]}/> */}
         {/* <Hook/> */}

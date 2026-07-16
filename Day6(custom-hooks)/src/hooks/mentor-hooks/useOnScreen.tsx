@@ -45,7 +45,8 @@ export const useOnScreen = <T extends Element,>(ref:RefObject<T|null>) => {
 
     return()=>{
       console.log('unobserve');
-      observer.unobserve(el)
+      observer.unobserve(el);
+      observer.disconnect();
     }
 
   },[ref])

@@ -29,7 +29,7 @@ type MobileType={
 type InitialState={
     mobiles:MobileType[],
     loading:boolean,
-    error:string|null|unknown,
+    error:string|null
 }
 
 const initialState:InitialState={
