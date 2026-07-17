@@ -9,12 +9,14 @@ import { Input } from "./components/Input"
 import { Pagination } from "./components/Pagination"
 import { PrevState } from "./components/PrevState"
 import { AdvanceAsync } from "./components/AdvanceAsync"
+import { Post } from "./components/self-components/Post"
+import { InfiniteScroll } from "./components/self-components/InfiniteScroll"
 // import { Accordian } from "./components/Accordian"
 
 export const App = () => {
   const [toggle,setToggle]=useState(true);
   return (
-    <div className="h-1000 border">
+    <div>
       {/* <UpdateCountState/> */}
       {/* <Default/> */}
       
@@ -34,7 +36,9 @@ export const App = () => {
 
       {/* <Accordian/> */}
 
-      <AdvanceAsync/>
+      {/* <AdvanceAsync/> */}
+
+        <InfiniteScroll/>
     </div>
   )
 }

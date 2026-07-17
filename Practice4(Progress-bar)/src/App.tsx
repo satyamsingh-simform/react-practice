@@ -1,9 +1,9 @@
-import { InfiniteScroll } from "./components/InfiniteScroll"
+import { ShowProgress } from "./components/ShowProgress"
 
 export const App = () => {
   return (
-    <div className="h-1000 border">
-      <InfiniteScroll/>
+    <div>
+      <ShowProgress/>
     </div>
   )
 }

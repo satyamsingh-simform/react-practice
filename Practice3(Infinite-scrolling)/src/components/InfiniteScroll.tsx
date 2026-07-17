@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import { InfiniteScrollList } from "./InfiniteScrollList"
 
@@ -15,17 +17,22 @@ export const InfiniteScroll = () => {
     const [posts,setPosts]=useState<Post[]>([]);
     const [page,setPage]=useState(1);
     const [loading,setLoading]=useState(false);
-    const hasMore=true
+    const [hasMore,setHasMore]=useState(true);
 
     console.log(posts);
     console.log('--->',page);
-    
 
     useEffect(()=>{
         setLoading(true);
          fetch(`https://picsum.photos/v2/list?page=${page}&limit=3`)
         .then((resp)=>resp.json())
-        .then((data)=>setPosts((prev)=>[...prev,...data]))
+        .then((data)=>{
+            if(!data.length){
+                setHasMore(false);
+                return;
+            }
+            setPosts((prev)=>[...prev,...data])
+        })
         .finally(()=>{
             setLoading(false);
         })
@@ -41,7 +48,9 @@ export const InfiniteScroll = () => {
             hasMore={hasMore}
             loading={loading}
             loadMore={loadMore}
-            renderItem={(post) => <div className="post">{post.author}</div>}
+            renderItem={(post) => <div>
+                <img className='h-80 w-50' src={post.download_url} alt="" />
+            </div>}
         />
     </div>
   )

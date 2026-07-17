@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 type Data={
     author:string,
@@ -12,8 +12,11 @@ type PostProps={
 }
 
 export const Post = ({data,setPage}:PostProps) => {
+    const lastItemRef=useRef<HTMLImageElement|null>(null);
 
     useEffect(()=>{
+
+        console.log('ref',lastItemRef.current);
 
         const observer=new IntersectionObserver((param)=>{
             console.log(param[0]);
@@ -22,7 +25,8 @@ export const Post = ({data,setPage}:PostProps) => {
             }
         },{threshold:1})
 
-        const lastImg=document.querySelector('.image__post:last-child');
+        // const lastImg=document.querySelector('.image__post:last-child');
+        const lastImg=lastItemRef.current;
         console.log(lastImg);
         if(!lastImg) return;
         observer.observe(lastImg);
@@ -37,8 +41,13 @@ export const Post = ({data,setPage}:PostProps) => {
   return (
     <div className="flex flex-col items-center gap-5">
         {
-            data?.map((obj)=>(
-                <img  key={obj.id} className="image__post h-80 w-50 object-cover rounded-2xl" src={obj.download_url} alt="img" />
+            data?.map((obj,index)=>(
+                <img  
+                key={obj.id} 
+                ref={index===data.length-1?lastItemRef:null}
+                className="image__post h-80 w-50 object-cover rounded-2xl" 
+                src={obj.download_url} alt="img" 
+                />
             ))
         }
     </div>
