@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
+import { withLoading } from "../../hoc/withLoading";
 import { UserList } from "./UserList";
-import { withLoading } from "../hoc/withLoading";
 
 const UserListWithLoading=withLoading(UserList);
 
